@@ -1,25 +1,60 @@
 <?php
 	include('header.php');
+     // $con = mysqli_connect("localhost","root","","test");
+     include('connection.php');
+     $result = mysqli_query($db, "SELECT * FROM gametable") or die( mysqli_error($db));
+
+     $new = mysqli_fetch_assoc($result);
+     mysqli_free_result($result);
+
+     // while($row = mysqli_fetch_array($result)){
+     //      echo "$row[gameName]";
+     //      echo "$row[publisherName]";
+     //      echo "$row[image]";
+     //      echo "$row[yearValue]";
+     //      echo "$row[description]";
+     //      echo "$row[dateTime]";
+     // }
 ?>
 
 
      <section>
           <div class="container">
-               <h2>Game Name</h2>
+               <h2>
+               <?php
+                         echo "$new[gameName]";
+                         echo ", ";
+                         echo "$new[publisherName]";
+                         echo ", ";
+                         echo "$new[yearValue]";
+               ?>
+                    <!-- Game Name -->
+               </h2>
 
                <p class="lead">
                     <i class="fa fa-user"></i> Username who added the game : Testing &nbsp;&nbsp;&nbsp;
-                    <i class="fa fa-calendar"></i> 12/06/2020 10:30 &nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-calendar"></i> 
+                    <?php
+                         echo "$new[dateTime]";
+                    ?>
+                    <!-- 12/06/2020 10:30  -->
+                    &nbsp;&nbsp;&nbsp;
                </p>
 
+               <?php
+                    echo "$new[image]";
+               ?>
                <img src="images/other-image-fullscreen-1-1920x700.jpg" class="img-responsive" alt="">
 
                <br>
 
                <h3>Description</h3>
-               
-
-               <p>Details of the game</p>
+               <p>
+               <?php
+                    echo "$new[description]";
+               ?>
+                    <!-- Details of the game -->
+               </p>
 
 
 

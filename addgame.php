@@ -1,5 +1,28 @@
 <?php
 	include('header.php');
+	include('connection.php');
+
+	if(isset($_POST['submit'])){
+		$gameName = $_POST['gameName'];
+		$publisherName = $_POST['publisherName'];
+		$image = $_POST['image'];
+		$yearValue = $_POST['yearValue'];
+		$description = $_POST['description'];
+
+		$insert = mysqli_query($db,"INSERT INTO gametable(gameName, publisherName, image, yearValue, description, dateTime)
+		VALUES ('$gameName','$publisherName', '$image', '$yearValue', '$description', now())");
+
+		if(!$insert)
+		{
+			echo mysqli_error();
+		}
+		// else
+		// {
+		// 	echo "Records added successfully.";
+		// }
+	}
+
+	mysqli_close($db);
 ?>
 
 <!-- Add Game Title -->
@@ -7,37 +30,31 @@
 		<h2>Add a Game</h2>
 		
 	</div>
-			
-	
 	
 	<!-- Add Game -->
 	<div class="container" id="AddGame">
-		
-		<h3>Enter the name of the game</h3>
-		<input type="text" name="newGameName" placeholder="Game Name">
-		<br>
-		<h3>Enter the name of the publisher</h3>
-		<input type="text" name="newPublisher" placeholder="Publisher">
-		<br>
-		<h3>Year of release</h3>
-		<div class="slidecontainer">
-			<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-		</div>
-		<br>
-		<h3>Description of the game</h3>
-		<textarea class="form-control" rows="6" placeholder="Description of the game" name="message" required></textarea>
-		<br>
-		<div class="col-md-4 col-sm-12">
-			<input type="submit" class="form-control" name="submitNewGame" value="Submit">
-		</div>
-		<br>
-		<br>
-		
+		 <form method="POST">
+		<!-- <form action="/submitGame.php"> -->
+			Game:
+			<br>
+			<input type="text" name="gameName">
+			<br>
+			Publisher:
+			<br>
+			<input type="text" name="publisherName">
+			<br>
+			Cover art:
+			<br>
+			<input type="file" name="image" Required>
+			<br>
+			Year:
+			<br>
+			<input type="range" for="yearRange" value="2021" min="1980" max="2021" oninput="this.nextElementSibling.value = this.value" name="yearValue"><output>2021</output><br>
+			Description:<br>
+			<textarea id="description" name="description" rows="5" cols="50"> </textarea><br>
+			<input type="submit" name= "submit" value="Submit">
+		</form>
 	</div>
-
-
-
-
 <?php
 	include('footer.php');
 ?>
