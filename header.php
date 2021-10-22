@@ -50,7 +50,6 @@
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="index.php">Home</a></li>
-                         <li><a href="post.php">Blog</a></li>
                          <li><a href="about.php">About Us</a></li>
                          <li><a href="team.php">Authors</a></li>
                          <li><a href="contact.php">Contact Us</a></li>
