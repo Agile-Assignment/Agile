@@ -8,148 +8,68 @@ if(isset($_SESSION['status'])){
 }
 else
 	include('header.php');
+
  ?>
+ 
+  <?php
 
+   $dbhost = 'localhost';
+   $dbuser = 'root';
+   $dbpass = '';
+   $dbname = 'game';
+   $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysqli_error());
+   }
+   $sql = 'SELECT gameID,Name, Year, Image FROM game ORDER BY gameID';
+   $result = mysqli_query($conn, $sql);
 
-     <!-- HOME -->
-     <section id="home">
-          <div class="row">
-               <div class="owl-carousel owl-theme home-slider">
-                    <div class="item item-first">
-                         <div class="caption">
-                              <div class="container">
-                                   <div class="col-md-6 col-sm-12">
-                                        <h1>Testing1</h1>
-                                        <h3>Testing1</h3>
-                                        <a href="blog.php" class="section-btn btn btn-default">Details</a>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
+   if (mysqli_num_rows($result) > 0) {
+      while($row = mysqli_fetch_assoc($result)) {
+		  	$name = $row['Name'];
+			$year = $row['Year'];
+			$image = $row ['Image'];
+			$id = $row ['gameID'];
+			
 
-                    <div class="item item-second">
-                         <div class="caption">
-                              <div class="container">
-                                   <div class="col-md-6 col-sm-12">
-                                        <h1>Testing2</h1>
-                                        <h3>Testing2</h3>
-                                        <a href="blog.php" class="section-btn btn btn-default">Details</a>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-
-                    <div class="item item-third">
-                         <div class="caption">
-                              <div class="container">
-                                   <div class="col-md-6 col-sm-12">
-                                        <h1>Testing3</h1>
-                                        <h3>Testing3</h3>
-                                        <a href="blog.php" class="section-btn btn btn-default">Details</a>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
-     </section>
-
+?>
+   
      <main>
-          <section>
+
                <div class="container">
                     <div class="row">
-                         <div class="col-md-12 col-sm-12">
-                              <div class="text-center">
-                                   <h2>About us</h2>
-
-                                   <br>
-
-                                   <p class="lead">This is the blog that we are going to review about games.
-                         </div>
-                    </div>
-               </div>
-          </section>
-          <section>
-               <div class="container">
-                    <div class="row">
-                         <div class="col-md-12 col-sm-12">
-                              <div class="section-title text-center">
-                                   <h2>Latest Blog posts <small>Lorem ipsum dolor sit amet.</small></h2>
-                              </div>
-                         </div>
+                         
 
                          <div class="col-md-4 col-sm-4">
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/product-1-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="<?= $image; ?>" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                             <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
+                                             <span title="Year"><i class="fa fa-calendar"></i> <?= $year; ?></span>
                                         </div>
                                    </div>
 
                                    <div class="courses-detail">
-                                        <h3><a href="blog-post-details.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h3>
+                                        <h3><?= $name; ?></a></h3>
                                    </div>
 
                                    <div class="courses-info">
-                                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="images/product-2-720x480.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                             <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                             <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="blog-post-details.html">Tempora molestiae, iste, consequatur unde sint praesentium!</a></h3>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="images/product-3-720x480.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                             <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                             <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="blog-post-details.html">A voluptas ratione, error provident distinctio, eaque id officia?</a></h3>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
+                                        <a href="blog.php?action=1&id=<?php echo $id ?>" class="section-btn btn btn-primary btn-block">Read More</a>
                                    </div>
                               </div>
                          </div>
                     </div>
                </div>
-          </section>
+
      </main>
-
+<?php
+	}
+   }
+	
+?>
      <!-- CONTACT -->
      <section id="contact">
           <div class="container">
@@ -186,6 +106,82 @@ else
           </div>
      </section>       
 
-   <?php
-	include('footer.php');
-?> 
+     <!-- FOOTER -->
+     <footer id="footer">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Headquarter</h2>
+                              </div>
+                              <address>
+                                   <p>212 Barrington Court <br>New York, ABC 10001</p>
+                              </address>
+
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-instagram"></a></li>
+                              </ul>
+
+                              <div class="copyright-text"> 
+                                   <p>Copyright &copy; 2020 Company Name</p>
+                                   <p>Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a></p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Contact Info</h2>
+                              </div>
+                              <address>
+                                   <p>+1 333 4040 5566</p>
+                                   <p><a href="mailto:contact@company.com">contact@company.com</a></p>
+                              </address>
+
+                              <div class="footer_menu">
+                                   <h2>Quick Links</h2>
+                                   <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about-us.html">About Us</a></li>
+                                        <li><a href="terms.html">Terms & Conditions</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                         <div class="footer-info newsletter-form">
+                              <div class="section-title">
+                                   <h2>Newsletter Signup</h2>
+                              </div>
+                              <div>
+                                   <div class="form-group">
+                                        <form action="#" method="get">
+                                             <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required>
+                                             <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
+                                        </form>
+                                        <span><sup>*</sup> Please note - we do not spam your email.</span>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+     <!-- SCRIPTS -->
+     <script src="js/jquery.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/owl.carousel.min.js"></script>
+     <script src="js/smoothscroll.js"></script>
+     <script src="js/custom.js"></script>
+
+</body>
+</html>

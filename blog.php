@@ -1,25 +1,85 @@
 <?php
 	include('header.php');
+     // $con = mysqli_connect("localhost","root","","test");
+     // include('connection.php');
+     $dbhost = 'localhost';
+     $dbuser = 'root';
+     $dbpass = '';
+     $dbname = 'game';
+     $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+     // $result = mysqli_query($conn, "SELECT * FROM game") or die( mysqli_error($conn));
+
+     // $new = mysqli_fetch_assoc($result);
+     // mysqli_free_result($result);
+
+     // while($row = mysqli_fetch_array($result)){
+     //      echo "$row[gameName]";
+     //      echo "$row[publisherName]";
+     //      echo "$row[image]";
+     //      echo "$row[yearValue]";
+     //      echo "$row[description]";
+     //      echo "$row[dateTime]";
+     // }
+
+     if(! $conn ) {
+          die('Could not connect: ' . mysqli_error());
+     }
+     if(isset($_GET['id'])){
+          $id = $_GET['id'];
+     }
+     // $sql = 'SELECT Name, Publisher, Year, Description, Image, Date FROM game ORDER BY gameID';
+     $sql = "SELECT Name, Publisher, Year, Description, Image, Date FROM game WHERE gameID = '$id'";
+     $result = mysqli_query($conn, $sql);
+
+     if (mysqli_num_rows($result) > 0) {
+          while($row = mysqli_fetch_assoc($result)) {
+		     $name = $row['Name'];
+               $publisher = $row['Publisher'];
+			$year = $row['Year'];
+               $description = $row['Description'];
+			$image = $row['Image'];
+               $date = $row['Date'];
 ?>
 
 
      <section>
           <div class="container">
-               <h2>Game Name</h2>
+               <h2>
+               <?php
+                         echo "$name";
+                         echo ", ";
+                         echo "$publisher";
+                         echo ", ";
+                         echo "$year";
+               ?>
+                    <!-- Game Name -->
+               </h2>
 
                <p class="lead">
                     <i class="fa fa-user"></i> Username who added the game : Testing &nbsp;&nbsp;&nbsp;
-                    <i class="fa fa-calendar"></i> 12/06/2020 10:30 &nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-calendar"></i> 
+                    <?php
+                         echo "$date";
+                    ?>
+                    <!-- 12/06/2020 10:30  -->
+                    &nbsp;&nbsp;&nbsp;
                </p>
 
-               <img src="images/other-image-fullscreen-1-1920x700.jpg" class="img-responsive" alt="">
+               <!-- <?php
+                    // echo "$new[Image]";
+               ?> -->
+               <img style="height:500px ;width=300px;" src="<?= $image; ?>">
+               <!-- <img src="images/other-image-fullscreen-1-1920x700.jpg" class="img-responsive" alt=""> -->
 
                <br>
 
                <h3>Description</h3>
-               
-
-               <p>Details of the game</p>
+               <p>
+               <?php
+                    echo "$description";
+               ?>
+                    <!-- Details of the game -->
+               </p>
 
 
 
@@ -94,7 +154,10 @@
                </div>
           </div>
      </section>
-
+     <?php
+	}
+   }
+?>
      <!-- FOOTER -->
      <footer id="footer">
           <div class="container">
