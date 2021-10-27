@@ -1,5 +1,14 @@
 <?php
-include('header.php');
+	session_start();
+if(isset($_SESSION['status'])){
+	if($_SESSION['status'] == true)	
+		include('headerUser.php');
+}
+else{
+	echo "<script>alert('Please sign in');</script>";
+	echo "<script>location.href='login.php'</script>";
+	exit();
+}
  ?>
 
 <?php
@@ -161,6 +170,70 @@ include('header.php');
    }
 	
 ?>
+
+<?php
+ $dbhost = 'localhost';
+     $dbuser = 'root';
+     $dbpass = '';
+     $dbname = 'game';
+     $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+
+     if(! $conn ) {
+          die('Could not connect: ' . mysqli_error());
+     }
+
+     $sql = "SELECT gameID FROM game WHERE gameID = '$id'";
+     $result = mysqli_query($conn, $sql);
+
+     if (mysqli_num_rows($result) > 0) {
+          while($row = mysqli_fetch_assoc($result)) {
+			$id = $row['gameID'];
+		
+
+
+?>
+
+
+                         <h4>Leave a Review</h4>
+
+                         <form action="rating.php" method="post" class="form">
+
+                              <div class="row">
+                                   <div class="col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                             <label class="control-label">Name</label>
+
+                                             <input type="text" name="name" class="form-control">
+                                        </div>
+										<div class="form-group">
+                                             <label class="control-label">GameID</label>
+
+                                             <input type="text" name="GameID" class="form-control" placeholder="Please do not change the ID" value = <?php echo $row['gameID'] ?>>
+                                        </div>
+                                   </div>
+								   
+								<div class="col-sm-6 col-xs-6">
+                                     <div class="form-group">
+                                        <label class="control-label">Rate this game</label>
+
+										<input type="range" for="Rating" value="5" min="0" max="5" 
+										oninput="this.nextElementSibling.value = this.value" name="rating"><output>5 </output><br>                                       
+										</div>
+                                </div>
+                              </div>
+								   
+								   
+							
+
+
+                              <div class="form-group">
+                                   <label class="control-label">Message</label>
+									<textarea class="form-control" rows="6" name="message" required></textarea>
+                              </div>
+
+                              <button type="submit" class="section-btn btn btn-primary">Submit</button>
+                         </form>
                     </div>
                </div>
           </div>
@@ -169,8 +242,8 @@ include('header.php');
      </section>
 
 <?php
-	
-	 
+	}
+	 }
 
 	include('footer.php');
 ?>
