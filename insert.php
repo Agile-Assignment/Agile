@@ -122,7 +122,7 @@ $sql = "INSERT INTO game (Name,Publisher,Year,Description,Image,user)
 $records = mysqli_query($connection,$sql);
 echo '<script language="javascript">
 alert("Data has been successfully uploaded");
-window.location.replace("index.php");
+window.location.replace("index2.php");
 </script>';
 }
 ?>
