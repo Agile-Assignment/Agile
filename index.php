@@ -1,12 +1,5 @@
 <?php
- session_start();
-if(isset($_SESSION['status'])){
-	if($_SESSION['status'] == true)	
-		include('headerUser.php');
-	else
-	include('header.php');
-}
-else
+
 	include('header.php');
 
  ?>
