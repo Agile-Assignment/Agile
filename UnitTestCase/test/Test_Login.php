@@ -83,15 +83,6 @@ use PHPUnit\Framework\TestCase;
             $this->assertArrayHasKey('Password', $result);
         }
     
-        // deliberately fail test as user array is missing user_role key
-        public function testFail_Validate_User_Missing_UserRole_Key()
-        {
-            $result = $this->user->validateUserMissingKey();
-            $this->assertArrayHasKey('Username', $result);
-            $this->assertArrayHasKey('Email', $result);
-            $this->assertArrayHasKey('Password', $result);
-
-        }
     
         // test pass if verified user logs in
         public function test_loginUser_Verified_User()
