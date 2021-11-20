@@ -34,7 +34,5 @@ class AddRepository{
         return $this->getPdo()->prepare('SELECT * FROM game')->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function fetchAdds()
-    {
-    }
+
 }
