@@ -85,10 +85,5 @@ class Testing
         "Password" => "p455w0rd");
     }
 
-    public function validateUserMissingKey()
-    {
-        return array("Username" => "user1",
-        "Email" => "user@gmail.com",
-        "Password" => "p455w0rd");
-    }
+
 }
