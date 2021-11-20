@@ -82,7 +82,6 @@ class Test_AddGame extends TestCase
         $games = $mockRepo->fetchGames();
 
         try{
-//           $assertValue = $mockGamesArray[0]['gameID'] && $games[0]['gameID'];
             $this->assertNotEquals($newGame[0]['gameID'],$games[0]['gameID']);
             echo "Game ID are different";
 
