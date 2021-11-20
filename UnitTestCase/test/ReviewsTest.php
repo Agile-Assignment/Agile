@@ -7,7 +7,7 @@ class ReviewsTest extends TestCase
 {
     /** @group db */
 
-    public function test_user_rating_number_are_different(){
+    public function test_user_reviewID_are_different(){
         $mockRepo = $this->createMock(ReviewRepository::class);
 
         $mockReviewsArray=[
@@ -31,12 +31,12 @@ class ReviewsTest extends TestCase
         $reviews = $mockRepo->fetchReviews();
 
         try{
-            $this->assertNotEquals($newReview[0]['Rate'],$reviews[0]['Rate']);
-            echo'Rating number is not the same.';
+            $this->assertNotEquals($newReview[0]['ReviewID'],$reviews[0]['ReviewID']);
+            echo'ReviewID is not the same.';
 //
         }catch (Exception $error){
             echo $error->getMessage();
-            $this->fail("Rating number is the same");
+            $this->fail("ReviewID is the same");
 
 
         }
@@ -64,8 +64,7 @@ class ReviewsTest extends TestCase
         $reviews = $mockRepo->fetchReviews();
 
         try{
-//           $assertValue = $mockReviewsArray[0]['Message'] && $reviews[0]['Message'];
-            $this->assertNotEquals($newReview[0]['Message'],$reviews[0]['Message']);
+            $this->assertNotEquals($newReview[0]['Names'],$reviews[0]['Names']);
             echo "User reviews are different";
 
 
