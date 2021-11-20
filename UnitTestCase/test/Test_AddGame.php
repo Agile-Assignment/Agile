@@ -7,7 +7,7 @@ class Test_AddGame extends TestCase
 {
     /** @group db */
 
-    public function test_user_rating_number_are_different(){
+    public function test_user_add_gamenumber_are_different(){
         $mockRepo = $this->createMock(AddRepository::class);
 
         $mockGamesArray=[
